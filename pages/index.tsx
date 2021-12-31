@@ -26,7 +26,7 @@ const Home: NextPage = () => {
               Late Checkout
             </a>
             as a Fullstack Engineer. Work and lead some projects such as <a href="https://jawa.gg" rel="nofollow noreferrer" target="_blank">JAWA</a>, <a href="https://latecheckout.studio" rel="nofollow noreferrer" target="_blank">Our Company Page</a>, etc. I write backend (Node.js, Express) and Frontend (React, Next.js).
-            Interested to hire me?
+            Interested to hire me? 
             <a href="mailto:ilhamfarobi@gmail.com">Hit me!</a>
           </p>
           <div className="links">
