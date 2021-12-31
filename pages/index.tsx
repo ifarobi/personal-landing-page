@@ -90,7 +90,7 @@ const Home: NextPage = () => {
         justify-content: center;
         align-items: center;
         height: 100vh;
-        padding: 20px;
+        padding: 0 20px;
       }
 
       .links {
