@@ -17,7 +17,7 @@ const Home: NextPage = () => {
             Hey there! I am a Software Engineer.
           </h2>
           <p>
-            Currently working at
+            Currently working at 
             <a
               href="https://latecheckout.studio"
               target="_blank"
