@@ -30,22 +30,23 @@ const Home: NextPage = () => {
             <a href="mailto:ilhamfarobi@gmail.com">Hit me!</a>
           </p>
           <div className="links">
-            <a href="mailto:ilhamfarobi@gmail.com" className="icon">
+            <a href="mailto:ilhamfarobi@gmail.com" className="icon" target="_blank" rel="noreferrer">
               <i className="icon-envelope"></i>
             </a>
-            <a href="https://github.com/ifarobi" className="icon">
+            <a href="https://github.com/ifarobi" className="icon" target="_blank" rel="noreferrer">
               <i className="icon-social-github"></i>
             </a>
             <a
               href="https://www.linkedin.com/in/ifarobi/"
               className="icon"
+              target="_blank" rel="noreferrer"
             >
               <i className="icon-social-linkedin"></i>
             </a>
-            <a href="https://twitter.com/IFarobi" className="icon">
+            <a href="https://twitter.com/IFarobi" className="icon" target="_blank" rel="noreferrer">
               <i className="icon-social-twitter"></i>
             </a>
-            <a href="https://instagram.com/ifarobi" className="icon">
+            <a href="https://instagram.com/ifarobi" className="icon" target="_blank" rel="noreferrer">
               <i className="icon-social-instagram"></i>
             </a>
           </div>
