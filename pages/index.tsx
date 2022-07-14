@@ -17,7 +17,7 @@ const Home: NextPage = () => {
             Hey there! I am a Software Engineer.
           </h2>
           <p>
-            Currently working at 
+            Currently working at&nbsp;
             <a
               href="https://latecheckout.studio"
               target="_blank"
@@ -25,8 +25,8 @@ const Home: NextPage = () => {
             >
               Late Checkout
             </a>
-            as a Fullstack Engineer. Work and lead some projects such as <a href="https://jawa.gg" rel="nofollow noreferrer" target="_blank">JAWA</a>, <a href="https://latecheckout.studio" rel="nofollow noreferrer" target="_blank">Our Company Page</a>, etc. I write backend (Node.js, Express) and Frontend (React, Next.js).
-            Interested to hire me? 
+            &nbsp;as a Fullstack Engineer. Work and lead some projects such as <a href="https://jawa.gg" rel="nofollow noreferrer" target="_blank">JAWA</a>, <a href="https://latecheckout.studio" rel="nofollow noreferrer" target="_blank">Our Company Page</a>, etc. I write backend (Node.js, Express) and Frontend (React, Next.js).
+            Interested to hire me?&nbsp; 
             <a href="mailto:ilhamfarobi@gmail.com">Hit me!</a>
           </p>
           <div className="links">
