@@ -25,7 +25,7 @@ const Home: NextPage = () => {
             >
               Late Checkout
             </a>
-            &nbsp;as a Fullstack Engineer. Work and lead some projects from Fortune 500s and startups start from e-commerce, Web3 and client's projects. I write backend (Node.js, Express) and Frontend (React, Next.js).
+            &nbsp;as a Fullstack Engineer. Work and lead some projects from Fortune 500s and startups start from e-commerce, Web3 and client&apos;s projects. I write backend (Node.js, Express) and Frontend (React, Next.js).
             Interested to hire me?&nbsp; 
             <a href="mailto:ilhamfarobi@gmail.com">Hit me!</a>
           </p>
