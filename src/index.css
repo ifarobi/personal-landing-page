@@ -50,11 +50,11 @@ a:hover {
 }
 
 .links {
-  width: 200px;
   margin: 40px auto 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 24px;
 }
 
 .icon {
