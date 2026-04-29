@@ -1,4 +1,5 @@
 import { PROFILE, type ProjectGlyph } from './profile'
+import { track } from './posthog'
 
 function ProjectGlyphSvg({ kind }: { kind: ProjectGlyph }) {
   if (kind === 'tui') {
@@ -78,7 +79,11 @@ function App() {
             <div className="px-row">
               <dt>EMAIL</dt>
               <dd>
-                <a className="px-link" href={`mailto:${P.contact.email}`}>
+                <a
+                  className="px-link"
+                  href={`mailto:${P.contact.email}`}
+                  onClick={() => track('email_click', { location: 'facts' })}
+                >
                   {P.contact.email}
                 </a>
               </dd>
@@ -91,6 +96,7 @@ function App() {
                   href={P.contact.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => track('social_click', { platform: 'linkedin', location: 'facts' })}
                 >
                   {P.contact.linkedin}
                 </a>
@@ -152,6 +158,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-work px-pj"
+                onClick={() => track('project_click', { name: pr.title, url: pr.url })}
               >
                 {inner}
               </a>
@@ -174,6 +181,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="px-work"
+              onClick={() => track('work_click', { title: w.title, url: w.url })}
             >
               <span className="px-w-y">{w.year}</span>
               <span>
@@ -218,7 +226,11 @@ function App() {
 
           <p className="px-touch">
             Email's best, no matter what you're sending —{' '}
-            <a className="px-link" href={`mailto:${P.contact.email}`}>
+            <a
+              className="px-link"
+              href={`mailto:${P.contact.email}`}
+              onClick={() => track('email_click', { location: 'touch' })}
+            >
               {P.contact.email}
             </a>
             .
@@ -231,6 +243,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
+              onClick={() => track('social_click', { platform: 'linkedin', location: 'touch' })}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -248,6 +261,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
+              onClick={() => track('social_click', { platform: 'github', location: 'touch' })}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -265,6 +279,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X / Twitter"
+              onClick={() => track('social_click', { platform: 'twitter', location: 'touch' })}
             >
               <svg
                 viewBox="0 0 24 24"
