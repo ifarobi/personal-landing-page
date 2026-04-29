@@ -233,11 +233,14 @@ function App() {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
-                <path
-                  fill="currentColor"
-                  d="M2 2h3v3H2zM2 6h3v8H2zM6 6h3v1H6zM10 6h3v1h-1v1h1v6h-3v-5h-1V8h1zM6 8h3v6H6z"
-                />
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                shapeRendering="crispEdges"
+              >
+                <path d="m22,2v-1H2v1h-1v20h1v1h20v-1h1V2h-1Zm-9,10v8h-3v-11h3v1h1v-1h4v1h1v10h-3v-8h-3Zm-9-4v-3h3v3h-3Zm3,1v11h-3v-11h3Z" />
               </svg>
             </a>
             <a
@@ -247,11 +250,14 @@ function App() {
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
-              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
-                <path
-                  fill="currentColor"
-                  d="M5 1h6v1H5zM4 2h1v1H4zM11 2h1v1h-1zM3 3h1v3H3zM12 3h1v3h-1zM2 6h1v4H2zM13 6h1v4h-1zM3 10h1v2H3zM12 10h1v2h-1zM4 11h1v3H4zM6 11h1v3H6zM9 11h1v3H9zM11 11h1v3h-1zM5 12h1v1H5zM10 12h1v1h-1zM5 13h6v1H5z"
-                />
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                shapeRendering="crispEdges"
+              >
+                <polygon points="23 9 23 15 22 15 22 17 21 17 21 19 20 19 20 20 19 20 19 21 18 21 18 22 16 22 16 23 15 23 15 18 14 18 14 17 15 17 15 16 17 16 17 15 18 15 18 14 19 14 19 9 18 9 18 6 16 6 16 7 15 7 15 8 14 8 14 7 10 7 10 8 9 8 9 7 8 7 8 6 6 6 6 9 5 9 5 14 6 14 6 15 7 15 7 16 9 16 9 18 7 18 7 17 6 17 6 16 4 16 4 17 5 17 5 19 6 19 6 20 9 20 9 23 8 23 8 22 6 22 6 21 5 21 5 20 4 20 4 19 3 19 3 17 2 17 2 15 1 15 1 9 2 9 2 7 3 7 3 5 4 5 4 4 5 4 5 3 7 3 7 2 9 2 9 1 15 1 15 2 17 2 17 3 19 3 19 4 20 4 20 5 21 5 21 7 22 7 22 9 23 9" />
               </svg>
             </a>
             <a
@@ -261,11 +267,14 @@ function App() {
               rel="noopener noreferrer"
               aria-label="X / Twitter"
             >
-              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
-                <path
-                  fill="currentColor"
-                  d="M2 2h3v1H2zM5 3h1v1H5zM10 2h4v1h-4zM6 4h1v1H6zM10 3h1v1h-1zM7 5h1v1H7zM9 4h1v1H9zM8 6h1v4H8zM7 10h1v1H7zM9 5h1v1H9zM10 4h1v1h-1zM11 3h1v1h-1zM12 2h1v1h-1zM6 11h1v1H6zM5 12h1v1H5zM2 13h3v1H2zM10 11h1v1h-1zM11 12h1v1h-1zM12 13h2v1h-2z"
-                />
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                shapeRendering="crispEdges"
+              >
+                <path d="m15.5,10v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h-3v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-1h-1v-1h-1v-2h-1v-1h-1v-1H1.5v1h1v1h1v1h1v2h1v1h1v2h1v1h1v2h1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h3v-1h1v-1h1v-1h1v-1h1v-1h1v-1h2v1h1v1h1v2h1v1h1v1h7v-1h-1v-1h-1v-1h-1v-2h-1v-1h-1v-2h-1v-1h-1v-2h-1v-1h1Zm0,4v1h1v2h1v1h1v2h-3v-2h-1v-1h-1v-1h-1v-2h-1v-1h-1v-1h-1v-2h-1v-1h-1v-2h3v1h1v2h1v1h1v2h1v1h1v1h1v2h1Z" />
               </svg>
             </a>
           </div>
