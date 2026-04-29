@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- "I" — cols 2-5, rows 4-12, with top/bottom serifs -->
+  <path fill="#c84c0c" d="M2 4h4v2H2zM3 6h2v5H3zM2 11h4v2H2z"/>
+  <!-- "F" — cols 8-13, rows 4-12 -->
+  <path fill="#c84c0c" d="M8 4h6v2H8zM8 6h2v7H8zM10 7h3v2h-3z"/>
+</svg>

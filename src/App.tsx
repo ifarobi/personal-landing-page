@@ -1,43 +1,281 @@
-function App() {
+import { PROFILE, type ProjectGlyph } from './profile'
+
+function ProjectGlyphSvg({ kind }: { kind: ProjectGlyph }) {
+  if (kind === 'tui') {
+    return (
+      <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
+        <path
+          fill="currentColor"
+          d="M1 2h14v1H1zM1 3h1v9H1zM14 3h1v9h-1zM2 12h13v1H2zM3 5h1v1H3zM4 5h1v1H4zM6 5h1v1H6zM7 5h1v1H7zM3 7h1v1H3zM4 7h1v1H4zM5 7h1v1H5zM3 9h2v1H3zM6 9h1v1H6z"
+        />
+      </svg>
+    )
+  }
+  if (kind === 'color') {
+    return (
+      <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
+        <path fill="currentColor" d="M3 2h10v1H3zM2 3h1v10H2zM13 3h1v10h-1zM3 13h10v1H3z" />
+        <path
+          fill="currentColor"
+          d="M4 4h3v3H4zM9 4h3v3H9zM4 9h3v3H4zM9 9h3v3H9z"
+          opacity=".55"
+        />
+      </svg>
+    )
+  }
+  if (kind === 'portrait') {
+    return (
+      <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
+        <path
+          fill="currentColor"
+          d="M6 3h4v1H6zM5 4h1v3H5zM10 4h1v3h-1zM6 7h4v1H6zM4 9h8v1H4zM3 10h10v4H3z"
+        />
+      </svg>
+    )
+  }
   return (
-    <div className="container">
-      <div className="content">
-        <div className="logo">
-          <img src="/logo.png" alt="Ilham Farobi" width={367} height={93} />
-        </div>
-        <h2>Hey there! I am a Software Engineer.</h2>
-        <p>
-          Currently working at{' '}
-          <a href="https://kangaroohealth.com" target="_blank" rel="noreferrer">
-            KangarooHealth
-          </a>{' '}
-          as a Frontend Lead. Building healthcare dashboards and remote patient
-          monitoring solutions. Previously worked with Fortune 500s and startups
-          across e-commerce, Web3, and various client projects. I write backend
-          (Node.js, Express) and Frontend (React, Next.js). Interested to hire
-          me? <a href="mailto:ilhamfarobi@gmail.com">Hit me!</a>
-        </p>
-        <div className="links">
-          <a href="mailto:ilhamfarobi@gmail.com" className="icon" target="_blank" rel="noreferrer" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </a>
-          <a href="https://github.com/ifarobi" className="icon" target="_blank" rel="noreferrer" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/ifarobi/" className="icon" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://twitter.com/IFarobi" className="icon" target="_blank" rel="noreferrer" aria-label="X/Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-          </a>
-          <a href="https://instagram.com/ifarobi" className="icon" target="_blank" rel="noreferrer" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-          </a>
-        </div>
-        <div className="footer">
-          <span>©2026 Ilham Farobi</span>
-        </div>
-      </div>
+    <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
+      <path
+        fill="currentColor"
+        d="M7 2h2v1H7zM5 3h6v1H5zM3 4h10v1H3zM2 5h12v1H2zM3 6h2v6H3zM11 6h2v6h-2zM5 7h6v5H5zM7 8h2v1H7zM7 10h2v2H7z"
+      />
+    </svg>
+  )
+}
+
+function App() {
+  const P = PROFILE
+
+  return (
+    <div className="px-root">
+      <main className="px-shell">
+        <header>
+          <div className="px-meta">STAFF FULLSTACK ENGINEER · 10+ YR · GMT+7</div>
+          <h1 className="px-name">
+            ILHAM
+            <br />
+            <span className="accent">FAROBI</span>
+          </h1>
+          <p className="px-lede">
+            Fullstack engineer in Indonesia. Ten-plus years building things on the web — mostly the
+            front, often the back. IC by track, open to lead and staff roles. Currently at
+            KangarooHealth, remote, and happy that way.
+          </p>
+        </header>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="01">
+            <span>FACTS</span>
+          </h2>
+          <dl className="px-dl">
+            <div className="px-row">
+              <dt>ROLE</dt>
+              <dd>Staff Fullstack Engineer · IC-track</dd>
+            </div>
+            <div className="px-row">
+              <dt>BASED</dt>
+              <dd>Indonesia · Remote · GMT+7</dd>
+            </div>
+            <div className="px-row">
+              <dt>EMAIL</dt>
+              <dd>
+                <a className="px-link" href={`mailto:${P.contact.email}`}>
+                  {P.contact.email}
+                </a>
+              </dd>
+            </div>
+            <div className="px-row">
+              <dt>LINKEDIN</dt>
+              <dd>
+                <a
+                  className="px-link"
+                  href={P.contact.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {P.contact.linkedin}
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="02">
+            <span>ABOUT</span>
+          </h2>
+          {P.bio.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </section>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="03">
+            <span>PROJECTS</span>
+          </h2>
+          <p className="px-section-lede">
+            Things I've built on my own time. Two are live, two are sunsetted but worth a footnote.
+          </p>
+
+          {P.personal.map((pr, i) => {
+            const glyphClass = `px-pj-glyph${pr.status === 'archived' ? ' is-archived' : ''}`
+            const inner = (
+              <>
+                <span className={glyphClass} aria-hidden="true">
+                  <ProjectGlyphSvg kind={pr.glyph} />
+                </span>
+                <span>
+                  <span className="px-w-title">{pr.title.toUpperCase()}</span>
+                  {pr.status === 'archived' && (
+                    <span className="px-pj-archived">[ ARCHIVED ]</span>
+                  )}
+                  <span className="px-w-kind">— {pr.kind}</span>
+                  <div className="px-w-blurb">{pr.desc}</div>
+                  <div className="px-w-tags">
+                    [ {pr.tags.map((t) => t.toUpperCase()).join(' · ')} ]
+                    {pr.year ? ` · ${pr.year}` : ''}
+                  </div>
+                </span>
+                {pr.status === 'live' ? (
+                  <span className="px-w-arrow">↗</span>
+                ) : (
+                  <span className="px-w-arrow" style={{ visibility: 'hidden' }}>
+                    ↗
+                  </span>
+                )}
+              </>
+            )
+
+            return pr.status === 'live' && pr.url ? (
+              <a
+                key={i}
+                href={pr.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-work px-pj"
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={i} className="px-work px-pj is-archived">
+                {inner}
+              </div>
+            )
+          })}
+        </section>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="04">
+            <span>SELECTED WORK</span>
+          </h2>
+          {P.work.map((w, i) => (
+            <a
+              key={i}
+              href={w.url || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-work"
+            >
+              <span className="px-w-y">{w.year}</span>
+              <span>
+                <span className="px-w-title">{w.title.toUpperCase()}</span>
+                <span className="px-w-kind">— {w.kind}</span>
+                <div className="px-w-blurb">{w.desc}</div>
+                <div className="px-w-tags">
+                  [ {w.tags.map((t) => t.toUpperCase()).join(' · ')} ]
+                </div>
+              </span>
+              <span className="px-w-arrow">↗</span>
+            </a>
+          ))}
+        </section>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="05">
+            <span>EXPERIENCE</span>
+          </h2>
+          {P.experience.map((e, i) => (
+            <article key={i} className="px-job">
+              <div className="px-job-h">
+                <span className="px-job-y">{e.period}</span>
+                <span>
+                  <span className="px-job-r">{e.role.toUpperCase()}</span>
+                  <span className="px-job-c">@ {e.company}</span>
+                  <div className="px-job-where">{e.where.toUpperCase()}</div>
+                </span>
+              </div>
+              <p className="px-job-blurb">{e.blurb}</p>
+              <div className="px-job-meta">
+                [ {e.stack.map((s) => s.toUpperCase()).join(' · ')} ]
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="px-section">
+          <h2 className="px-section-h" data-num="06">
+            <span>GET IN TOUCH</span>
+          </h2>
+
+          <p className="px-touch">
+            Email is best —{' '}
+            <a className="px-link" href={`mailto:${P.contact.email}`}>
+              {P.contact.email}
+            </a>
+            .
+          </p>
+
+          <div className="px-icons">
+            <a
+              className="px-icon"
+              href={P.contact.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
+                <path
+                  fill="currentColor"
+                  d="M2 2h3v3H2zM2 6h3v8H2zM6 6h3v1H6zM10 6h3v1h-1v1h1v6h-3v-5h-1V8h1zM6 8h3v6H6z"
+                />
+              </svg>
+            </a>
+            <a
+              className="px-icon"
+              href={P.contact.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
+                <path
+                  fill="currentColor"
+                  d="M5 1h6v1H5zM4 2h1v1H4zM11 2h1v1h-1zM3 3h1v3H3zM12 3h1v3h-1zM2 6h1v4H2zM13 6h1v4h-1zM3 10h1v2H3zM12 10h1v2h-1zM4 11h1v3H4zM6 11h1v3H6zM9 11h1v3H9zM11 11h1v3h-1zM5 12h1v1H5zM10 12h1v1h-1zM5 13h6v1H5z"
+                />
+              </svg>
+            </a>
+            <a
+              className="px-icon"
+              href={P.contact.twitterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X / Twitter"
+            >
+              <svg viewBox="0 0 16 16" width="22" height="22" shapeRendering="crispEdges">
+                <path
+                  fill="currentColor"
+                  d="M2 2h3v1H2zM5 3h1v1H5zM10 2h4v1h-4zM6 4h1v1H6zM10 3h1v1h-1zM7 5h1v1H7zM9 4h1v1H9zM8 6h1v4H8zM7 10h1v1H7zM9 5h1v1H9zM10 4h1v1h-1zM11 3h1v1h-1zM12 2h1v1h-1zM6 11h1v1H6zM5 12h1v1H5zM2 13h3v1H2zM10 11h1v1h-1zM11 12h1v1h-1zM12 13h2v1h-2z"
+                />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <footer className="px-foot">
+          <span>© {new Date().getFullYear()} ILHAM FAROBI</span>
+          <span>SET IN PRESS START 2P</span>
+        </footer>
+      </main>
     </div>
   )
 }
