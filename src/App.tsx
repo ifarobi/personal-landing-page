@@ -50,16 +50,15 @@ function App() {
     <div className="px-root">
       <main className="px-shell">
         <header>
-          <div className="px-meta">STAFF FULLSTACK ENGINEER · 10+ YR · GMT+7</div>
+          <div className="px-meta">FULLSTACK ENGINEER · 10+ YR · GMT+7</div>
           <h1 className="px-name">
             ILHAM
             <br />
             <span className="accent">FAROBI</span>
           </h1>
           <p className="px-lede">
-            Fullstack engineer in Indonesia. Ten-plus years building things on the web — mostly the
-            front, often the back. IC by track, open to lead and staff roles. Currently at
-            KangarooHealth, remote, and happy that way.
+            Fullstack engineer in Indonesia. Ten-plus years on the web — frontend by trade,
+            fullstack by reach. Currently leading frontend at KangarooHealth, remote.
           </p>
         </header>
 
@@ -70,7 +69,7 @@ function App() {
           <dl className="px-dl">
             <div className="px-row">
               <dt>ROLE</dt>
-              <dd>Staff Fullstack Engineer · IC-track</dd>
+              <dd>Fullstack engineer · 10+ yr</dd>
             </div>
             <div className="px-row">
               <dt>BASED</dt>
@@ -218,7 +217,7 @@ function App() {
           </h2>
 
           <p className="px-touch">
-            Email is best —{' '}
+            Email's best, no matter what you're sending —{' '}
             <a className="px-link" href={`mailto:${P.contact.email}`}>
               {P.contact.email}
             </a>

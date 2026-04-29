@@ -60,9 +60,8 @@ export const PROFILE: Profile = {
     twitterUrl: 'https://x.com/ifarobi',
   },
   bio: [
-    "I'm a fullstack engineer based in Indonesia with 10+ years of experience. Frontend by gravity — React, Vue, TypeScript, design systems — but I'm just as at home on Node, Go, Ruby, or PHP. IC-track most of my career; open to lead and staff roles.",
-    "I've led squads at Bukalapak (Indonesia's largest e-commerce, where I helped build the Mitra product), shipped healthcare tooling at KangarooHealth, and freelanced fullstack for startups and Fortune 500s in between.",
-    'I care about software that feels obvious, codebases that don’t punish the next person to open them, and the small interaction details that turn a spec into a product.',
+    "I've led squads at Bukalapak, shipped healthcare tooling at KangarooHealth, and freelanced fullstack for startups and Fortune 500s in between. Frontend most days — React, Vue, TypeScript, design systems — but I'm at home on Node, Go, Ruby, or PHP when the back end calls.",
+    "What I care about: software that feels obvious to use, codebases that don't punish the next person to open them, and the small interaction details that turn a spec into a product.",
   ],
   personal: [
     {
