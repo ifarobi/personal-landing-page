@@ -1,4 +1,4 @@
-export type ProjectGlyph = 'tui' | 'color' | 'portrait' | 'school'
+export type ProjectGlyph = 'tui' | 'color' | 'portrait' | 'school' | 'gold'
 
 export interface PersonalProject {
   title: string
@@ -74,6 +74,17 @@ export const PROFILE: Profile = {
       url: 'https://github.com/ifarobi/servertui',
       status: 'live',
       glyph: 'tui',
+    },
+    {
+      title: 'Pemantau Harga Emas',
+      kind: 'Side product · Solo',
+      year: '2026',
+      desc: 'Gold price tracker for the Indonesian market — daily Antam and UBS spot prices, historical trend, and per-gram math. Built to scratch a personal investing itch.',
+      tags: ['Next.js', 'Finance', 'ID'],
+      link: 'gold-tracker.ifarobi.com',
+      url: 'https://gold-tracker.ifarobi.com',
+      status: 'live',
+      glyph: 'gold',
     },
     {
       title: 'Coloring Cafe',

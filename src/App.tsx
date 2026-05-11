@@ -24,6 +24,16 @@ function ProjectGlyphSvg({ kind }: { kind: ProjectGlyph }) {
       </svg>
     )
   }
+  if (kind === 'gold') {
+    return (
+      <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
+        <path
+          fill="currentColor"
+          d="M3 10h1v3H3zM5 8h1v5H5zM7 6h1v7H7zM9 4h1v9H9zM11 2h1v11h-1zM2 13h12v1H2z"
+        />
+      </svg>
+    )
+  }
   if (kind === 'portrait') {
     return (
       <svg viewBox="0 0 16 16" width="44" height="44" shapeRendering="crispEdges">
