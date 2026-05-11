@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   margin: 0;
@@ -82,6 +86,7 @@ a.px-link:hover {
 
 .px-section {
   margin-top: 64px;
+  scroll-margin-top: 24px;
 }
 .px-section-h {
   font-family: 'Press Start 2P', monospace;
@@ -344,6 +349,149 @@ p:last-child {
   font-size: 8px;
   color: var(--muted);
   letter-spacing: 0.5px;
+}
+
+.px-seeall {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  width: 100%;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--ink);
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s, transform 0.15s;
+}
+.px-seeall:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200, 76, 12, 0.04);
+}
+.px-seeall:hover .px-seeall-arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+.px-seeall-count {
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.5px;
+}
+.px-seeall-arrow {
+  transition: transform 0.15s, color 0.15s;
+  color: var(--muted);
+}
+
+.px-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.px-more-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200, 76, 12, 0.04);
+}
+.px-more-btn .chev {
+  font-size: 10px;
+}
+
+.px-collapsed {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+.px-collapsed.is-open {
+  max-height: 4000px;
+  opacity: 1;
+}
+
+.px-nav {
+  position: fixed;
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 12px;
+}
+.px-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.px-nav a .num {
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.px-nav a .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  opacity: 0.4;
+  transition: opacity 0.15s, background 0.15s, transform 0.15s;
+}
+.px-nav a:hover {
+  color: var(--ink);
+}
+.px-nav a:hover .dot {
+  opacity: 0.8;
+}
+.px-nav a.is-active {
+  color: var(--accent);
+}
+.px-nav a.is-active .num {
+  color: var(--accent);
+}
+.px-nav a.is-active .dot {
+  background: var(--accent);
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+@media (max-width: 1180px) {
+  .px-nav {
+    left: 12px;
+    padding: 14px 8px;
+  }
+  .px-nav a .label,
+  .px-nav a .num {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .px-nav {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {

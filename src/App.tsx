@@ -1,5 +1,19 @@
+import { useEffect, useState, type MouseEvent } from 'react'
 import { PROFILE, type ProjectGlyph } from './profile'
 import { track } from './posthog'
+
+const SECTIONS = [
+  { num: '01', id: 'facts', label: 'FACTS' },
+  { num: '02', id: 'about', label: 'ABOUT' },
+  { num: '03', id: 'projects', label: 'PROJECTS' },
+  { num: '04', id: 'work', label: 'WORK' },
+  { num: '05', id: 'experience', label: 'EXPERIENCE' },
+  { num: '06', id: 'contact', label: 'CONTACT' },
+] as const
+
+const HOME_PROJECTS_LIMIT = 3
+const HOME_WORK_LIMIT = 3
+const RECENT_ROLES = 3
 
 function ProjectGlyphSvg({ kind }: { kind: ProjectGlyph }) {
   if (kind === 'tui') {
@@ -56,9 +70,139 @@ function ProjectGlyphSvg({ kind }: { kind: ProjectGlyph }) {
 
 function App() {
   const P = PROFILE
+  const [active, setActive] = useState<string>('facts')
+  const [showMoreProjects, setShowMoreProjects] = useState(false)
+  const [showMoreWork, setShowMoreWork] = useState(false)
+  const [showOlderRoles, setShowOlderRoles] = useState(false)
+
+  useEffect(() => {
+    const els = SECTIONS.map((s) => document.getElementById(s.id)).filter(
+      (el): el is HTMLElement => el !== null,
+    )
+    if (!els.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible[0]) setActive(visible[0].target.id)
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: 0 },
+    )
+    els.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  const jumpTo = (id: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const el = document.getElementById(id)
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.scrollY - 24
+    window.scrollTo({ top: y, behavior: 'smooth' })
+    history.replaceState(null, '', `#${id}`)
+    track('nav_click', { section: id })
+  }
+
+  const homeProjects = P.personal.slice(0, HOME_PROJECTS_LIMIT)
+  const extraProjects = P.personal.slice(HOME_PROJECTS_LIMIT)
+  const hasMoreProjects = extraProjects.length > 0
+
+  const homeWork = P.work.slice(0, HOME_WORK_LIMIT)
+  const extraWork = P.work.slice(HOME_WORK_LIMIT)
+  const hasMoreWork = extraWork.length > 0
+
+  const recentRoles = P.experience.slice(0, RECENT_ROLES)
+  const olderRoles = P.experience.slice(RECENT_ROLES)
+  const hasOlderRoles = olderRoles.length > 0
+
+  const renderProjects = (items: typeof P.personal) =>
+    items.map((pr, i) => {
+      const glyphClass = `px-pj-glyph${pr.status === 'archived' ? ' is-archived' : ''}`
+      const inner = (
+        <>
+          <span className={glyphClass} aria-hidden="true">
+            <ProjectGlyphSvg kind={pr.glyph} />
+          </span>
+          <span>
+            <span className="px-w-title">{pr.title.toUpperCase()}</span>
+            {pr.status === 'archived' && (
+              <span className="px-pj-archived">[ ARCHIVED ]</span>
+            )}
+            <span className="px-w-kind">— {pr.kind}</span>
+            <div className="px-w-blurb">{pr.desc}</div>
+            <div className="px-w-tags">
+              [ {pr.tags.map((t) => t.toUpperCase()).join(' · ')} ]
+              {pr.year ? ` · ${pr.year}` : ''}
+            </div>
+          </span>
+          {pr.status === 'live' ? (
+            <span className="px-w-arrow">↗</span>
+          ) : (
+            <span className="px-w-arrow" style={{ visibility: 'hidden' }}>
+              ↗
+            </span>
+          )}
+        </>
+      )
+
+      return pr.status === 'live' && pr.url ? (
+        <a
+          key={i}
+          href={pr.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-work px-pj"
+          onClick={() => track('project_click', { name: pr.title, url: pr.url })}
+        >
+          {inner}
+        </a>
+      ) : (
+        <div key={i} className="px-work px-pj is-archived">
+          {inner}
+        </div>
+      )
+    })
+
+  const renderWork = (items: typeof P.work) =>
+    items.map((w, i) => (
+      <a
+        key={i}
+        href={w.url || '#'}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-work"
+        onClick={() => track('work_click', { title: w.title, url: w.url })}
+      >
+        <span className="px-w-y">{w.year}</span>
+        <span>
+          <span className="px-w-title">{w.title.toUpperCase()}</span>
+          <span className="px-w-kind">— {w.kind}</span>
+          <div className="px-w-blurb">{w.desc}</div>
+          <div className="px-w-tags">
+            [ {w.tags.map((t) => t.toUpperCase()).join(' · ')} ]
+          </div>
+        </span>
+        <span className="px-w-arrow">↗</span>
+      </a>
+    ))
 
   return (
     <div className="px-root">
+      <nav className="px-nav" aria-label="Sections">
+        {SECTIONS.map((s) => (
+          <a
+            key={s.id}
+            href={`#${s.id}`}
+            onClick={jumpTo(s.id)}
+            className={active === s.id ? 'is-active' : ''}
+          >
+            <span className="dot" aria-hidden="true"></span>
+            <span className="num">{s.num}</span>
+            <span className="label">{s.label}</span>
+          </a>
+        ))}
+      </nav>
+
       <main className="px-shell">
         <header>
           <div className="px-meta">FULLSTACK ENGINEER · 10+ YR · GMT+7</div>
@@ -73,7 +217,7 @@ function App() {
           </p>
         </header>
 
-        <section className="px-section">
+        <section id="facts" className="px-section">
           <h2 className="px-section-h" data-num="01">
             <span>FACTS</span>
           </h2>
@@ -115,7 +259,7 @@ function App() {
           </dl>
         </section>
 
-        <section className="px-section">
+        <section id="about" className="px-section">
           <h2 className="px-section-h" data-num="02">
             <span>ABOUT</span>
           </h2>
@@ -124,94 +268,85 @@ function App() {
           ))}
         </section>
 
-        <section className="px-section">
+        <section id="projects" className="px-section">
           <h2 className="px-section-h" data-num="03">
             <span>PROJECTS</span>
           </h2>
           <p className="px-section-lede">
-            Things I've built on my own time. Two are live, two are sunsetted but worth a footnote.
+            Things I've built on my own time. A few highlights — the rest are one click away.
           </p>
 
-          {P.personal.map((pr, i) => {
-            const glyphClass = `px-pj-glyph${pr.status === 'archived' ? ' is-archived' : ''}`
-            const inner = (
-              <>
-                <span className={glyphClass} aria-hidden="true">
-                  <ProjectGlyphSvg kind={pr.glyph} />
-                </span>
-                <span>
-                  <span className="px-w-title">{pr.title.toUpperCase()}</span>
-                  {pr.status === 'archived' && (
-                    <span className="px-pj-archived">[ ARCHIVED ]</span>
-                  )}
-                  <span className="px-w-kind">— {pr.kind}</span>
-                  <div className="px-w-blurb">{pr.desc}</div>
-                  <div className="px-w-tags">
-                    [ {pr.tags.map((t) => t.toUpperCase()).join(' · ')} ]
-                    {pr.year ? ` · ${pr.year}` : ''}
-                  </div>
-                </span>
-                {pr.status === 'live' ? (
-                  <span className="px-w-arrow">↗</span>
-                ) : (
-                  <span className="px-w-arrow" style={{ visibility: 'hidden' }}>
-                    ↗
-                  </span>
-                )}
-              </>
-            )
+          {renderProjects(homeProjects)}
 
-            return pr.status === 'live' && pr.url ? (
-              <a
-                key={i}
-                href={pr.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-work px-pj"
-                onClick={() => track('project_click', { name: pr.title, url: pr.url })}
+          {hasMoreProjects && (
+            <>
+              <div
+                className={'px-collapsed' + (showMoreProjects ? ' is-open' : '')}
+                aria-hidden={!showMoreProjects}
               >
-                {inner}
-              </a>
-            ) : (
-              <div key={i} className="px-work px-pj is-archived">
-                {inner}
+                {renderProjects(extraProjects)}
               </div>
-            )
-          })}
+              <button
+                type="button"
+                className="px-seeall"
+                onClick={() => {
+                  setShowMoreProjects((v) => {
+                    track('see_more_toggle', { section: 'projects', expanded: !v })
+                    return !v
+                  })
+                }}
+                aria-expanded={showMoreProjects}
+              >
+                <span>{showMoreProjects ? 'HIDE EXTRA PROJECTS' : 'SEE ALL PROJECTS'}</span>
+                <span className="px-seeall-count">{P.personal.length} TOTAL</span>
+                <span className="px-seeall-arrow">{showMoreProjects ? '↑' : '→'}</span>
+              </button>
+            </>
+          )}
         </section>
 
-        <section className="px-section">
+        <section id="work" className="px-section">
           <h2 className="px-section-h" data-num="04">
             <span>SELECTED WORK</span>
           </h2>
-          {P.work.map((w, i) => (
-            <a
-              key={i}
-              href={w.url || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-work"
-              onClick={() => track('work_click', { title: w.title, url: w.url })}
-            >
-              <span className="px-w-y">{w.year}</span>
-              <span>
-                <span className="px-w-title">{w.title.toUpperCase()}</span>
-                <span className="px-w-kind">— {w.kind}</span>
-                <div className="px-w-blurb">{w.desc}</div>
-                <div className="px-w-tags">
-                  [ {w.tags.map((t) => t.toUpperCase()).join(' · ')} ]
-                </div>
-              </span>
-              <span className="px-w-arrow">↗</span>
-            </a>
-          ))}
+          <p className="px-section-lede">
+            A few recent things. Older client work — including freelance — sits behind the button.
+          </p>
+
+          {renderWork(homeWork)}
+
+          {hasMoreWork && (
+            <>
+              <div
+                className={'px-collapsed' + (showMoreWork ? ' is-open' : '')}
+                aria-hidden={!showMoreWork}
+              >
+                {renderWork(extraWork)}
+              </div>
+              <button
+                type="button"
+                className="px-seeall"
+                onClick={() => {
+                  setShowMoreWork((v) => {
+                    track('see_more_toggle', { section: 'work', expanded: !v })
+                    return !v
+                  })
+                }}
+                aria-expanded={showMoreWork}
+              >
+                <span>{showMoreWork ? 'HIDE EXTRA WORK' : 'SEE ALL WORK'}</span>
+                <span className="px-seeall-count">{P.work.length} TOTAL</span>
+                <span className="px-seeall-arrow">{showMoreWork ? '↑' : '→'}</span>
+              </button>
+            </>
+          )}
         </section>
 
-        <section className="px-section">
+        <section id="experience" className="px-section">
           <h2 className="px-section-h" data-num="05">
             <span>EXPERIENCE</span>
           </h2>
-          {P.experience.map((e, i) => (
+          {recentRoles.map((e, i) => (
             <article key={i} className="px-job">
               <div className="px-job-h">
                 <span className="px-job-y">{e.period}</span>
@@ -227,9 +362,53 @@ function App() {
               </div>
             </article>
           ))}
+
+          {hasOlderRoles && (
+            <>
+              <div
+                className={'px-collapsed' + (showOlderRoles ? ' is-open' : '')}
+                aria-hidden={!showOlderRoles}
+              >
+                {olderRoles.map((e, i) => (
+                  <article key={i} className="px-job">
+                    <div className="px-job-h">
+                      <span className="px-job-y">{e.period}</span>
+                      <span>
+                        <span className="px-job-r">{e.role.toUpperCase()}</span>
+                        <span className="px-job-c">@ {e.company}</span>
+                        <div className="px-job-where">{e.where.toUpperCase()}</div>
+                      </span>
+                    </div>
+                    <p className="px-job-blurb">{e.blurb}</p>
+                    <div className="px-job-meta">
+                      [ {e.stack.map((s) => s.toUpperCase()).join(' · ')} ]
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <button
+                type="button"
+                className="px-more-btn"
+                onClick={() => {
+                  setShowOlderRoles((v) => {
+                    track('see_more_toggle', { section: 'experience', expanded: !v })
+                    return !v
+                  })
+                }}
+                aria-expanded={showOlderRoles}
+              >
+                <span className="chev">{showOlderRoles ? '▴' : '▾'}</span>
+                <span>
+                  {showOlderRoles
+                    ? 'HIDE EARLIER ROLES'
+                    : `SHOW ${olderRoles.length} EARLIER ROLES`}
+                </span>
+              </button>
+            </>
+          )}
         </section>
 
-        <section className="px-section">
+        <section id="contact" className="px-section">
           <h2 className="px-section-h" data-num="06">
             <span>GET IN TOUCH</span>
           </h2>
